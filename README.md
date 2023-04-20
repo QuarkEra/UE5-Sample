@@ -1,3 +1,5 @@
 # UE5Sample
 
-Developed with Unreal Engine 5
+Had an interview end of January 2022 for apprentice position with UE/C++.
+
+Will now demonstrate what has been learned in my spare time.
