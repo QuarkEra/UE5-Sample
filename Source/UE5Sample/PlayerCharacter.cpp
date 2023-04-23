@@ -27,10 +27,17 @@ void APlayerCharacter::BeginPlay()
 	
 }
 
-void APlayerCharacter::MoveUp(const FInputActionValue& Value)
+void APlayerCharacter::MoveUpDown(const FInputActionValue& Value)
 {
 	FVector Delta = FVector::ZeroVector;
-	Delta.X = Value.GetMagnitude();
+	Delta.X = -Value.GetMagnitude();
+	AddMovementInput(Delta);
+}
+
+void APlayerCharacter::MoveLeftRight(const FInputActionValue& Value)
+{
+	FVector Delta = FVector::ZeroVector;
+	Delta.Y = -Value.GetMagnitude();
 	AddMovementInput(Delta);
 }
 
@@ -51,6 +58,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	eiSubsystem->AddMappingContext(InputMappingContext, 0);
 	UEnhancedInputComponent* eiInput = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
-	eiInput->BindAction(InputMoveUp, ETriggerEvent::Triggered, this, &APlayerCharacter::MoveUp);
+	eiInput->BindAction(InputMoveUp, ETriggerEvent::Triggered, this, &APlayerCharacter::MoveUpDown);
+	eiInput->BindAction(InputMoveLeftRight,ETriggerEvent::Triggered, this, &APlayerCharacter::MoveLeftRight);
 }
 
