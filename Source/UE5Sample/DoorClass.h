@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MyGameModeBase.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "DoorClass.generated.h"

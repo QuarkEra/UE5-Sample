@@ -4,7 +4,9 @@
 #include "PlayerCharacter.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "MyGameModeBase.h"
 #include "Components/InputComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -24,6 +26,12 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AMyGameModeBase* TheGameMode = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (TheGameMode != nullptr)
+	{
+		TheGameMode->SetPreviousLevel();			
+	}
 	
 }
 

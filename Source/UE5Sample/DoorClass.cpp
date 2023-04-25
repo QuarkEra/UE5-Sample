@@ -2,7 +2,9 @@
 
 
 #include "DoorClass.h"
+
 #include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 ADoorClass::ADoorClass()
@@ -26,10 +28,15 @@ void ADoorClass::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor*
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	APawn* MyCharacter = UGameplayStatics::GetPlayerPawn(this, 0);
-	if (OtherActor == MyCharacter && LevelToLoad != "")	
+	AMyGameModeBase* GameMode = GetWorld()->GetAuthGameMode<AMyGameModeBase>();
+	if (GameMode != nullptr )
 	{
-		UGameplayStatics::OpenLevel(this, LevelToLoad);
+		if (OtherActor == MyCharacter && LevelToLoad != "")	
+		{
+			GameMode->LoadTargetLevel(LevelToLoad);
+		}
 	}
+	
 }
 
 // Called every frame
