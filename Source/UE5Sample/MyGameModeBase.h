@@ -13,10 +13,8 @@ UCLASS()
 class UE5SAMPLE_API AMyGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-
 	
 	virtual FString InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal) override;
-	UGameInstance* GetThisGameInstance();
 
 public:
 	AMyGameModeBase();

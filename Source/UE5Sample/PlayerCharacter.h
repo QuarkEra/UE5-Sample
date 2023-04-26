@@ -27,24 +27,22 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
 
-	/*
-	 * Enhanced Input  
-	 */
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Enhanced Input", meta = (AllowPrivateAccess = "true"))
-	UInputMappingContext* InputMappingContext;
+	// Enhanced Input
+	UPROPERTY(EditAnywhere, Category="Input")
+	TSoftObjectPtr<UInputMappingContext> InputMapping;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Enhanced Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* InputMoveUp;
-	void MoveUpDown(const FInputActionValue &Value);
+	void MoveUpDown(const FInputActionInstance& Instance);
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Enhanced Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* InputMoveLeftRight;
-	void MoveLeftRight(const FInputActionValue &Value);
+	void MoveLeftRight(const FInputActionInstance &Instance);
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 };

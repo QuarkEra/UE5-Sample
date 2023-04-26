@@ -3,6 +3,7 @@
 
 #include "DoorClass.h"
 
+#include "MyGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 
 

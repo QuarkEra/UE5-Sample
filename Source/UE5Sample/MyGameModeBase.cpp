@@ -13,32 +13,22 @@ FString AMyGameModeBase::InitNewPlayer(APlayerController* NewPlayerController, c
                                        const FString& Options, const FString& Portal)
 {
 	CurrentLevel = UGameplayStatics::GetCurrentLevelName(this);
-	UE_LOG(LogTemp, Warning, TEXT("Current Level: %s"), *CurrentLevel);
-	UTheGameInstance* Instance = Cast<UTheGameInstance>(GetThisGameInstance());
+	UTheGameInstance* Instance = Cast<UTheGameInstance>(GetGameInstance());
 	for (TActorIterator<APlayerStart> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		FName Tag = ActorItr->PlayerStartTag;
 		FString StringTag = Tag.ToString();
-		UE_LOG(LogTemp, Warning, TEXT("Start Tag: %s"), *StringTag);
 		if (Instance == nullptr)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Instance is nullptr"));
 			return Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
 		}
 		FString PreviousLevel = Instance->PreviousLevel;
 		if (StringTag == PreviousLevel)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Start Tag equal to previous level: %s"), *StringTag);
 			return Super::InitNewPlayer(NewPlayerController, UniqueId, Options, StringTag);
 		}
 	}
 	return Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
-}
-
-UGameInstance* AMyGameModeBase::GetThisGameInstance()
-{
-	UTheGameInstance* Instance = Cast<UTheGameInstance>(GetGameInstance());
-	return Instance;
 }
 
 AMyGameModeBase::AMyGameModeBase()
@@ -57,7 +47,7 @@ void AMyGameModeBase::LoadTargetLevel(FName LevelName)
 
 void AMyGameModeBase::SetPreviousLevel()
 {
-	UTheGameInstance* Instance = Cast<UTheGameInstance>(GetThisGameInstance());
+	UTheGameInstance* Instance = Cast<UTheGameInstance>(GetGameInstance());
 	if (Instance == nullptr)
 	{
 		return;
