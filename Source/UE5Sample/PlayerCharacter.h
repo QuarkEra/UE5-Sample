@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Interactor.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -26,18 +27,23 @@ protected:
 	USpringArmComponent* SpringArm;
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
-
+	UPROPERTY(EditAnywhere)
+	UInteractor* InteractorComponent;
+	
 	// Enhanced Input
 	UPROPERTY(EditAnywhere, Category="Input")
 	TSoftObjectPtr<UInputMappingContext> InputMapping;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Enhanced Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* InputMoveUp;
 	void MoveUpDown(const FInputActionInstance& Instance);
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Enhanced Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* InputMoveLeftRight;
 	void MoveLeftRight(const FInputActionInstance &Instance);
-
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta = (AllowPrivateAccess = "true"))
+	UInputAction* InputInteract;
+	void Interact(const FInputActionInstance& Instance);
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

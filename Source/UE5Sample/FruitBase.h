@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "DoorClass.generated.h"
+#include "FruitBase.generated.h"
 
 UCLASS()
-class UE5SAMPLE_API ADoorClass : public AActor
+class UE5SAMPLE_API AFruitBase : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ADoorClass();
+	AFruitBase();
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,6 +22,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
 
 };

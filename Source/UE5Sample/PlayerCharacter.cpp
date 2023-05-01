@@ -11,6 +11,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 
+
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
@@ -23,6 +24,9 @@ APlayerCharacter::APlayerCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm);
 
+	InteractorComponent = CreateDefaultSubobject<UInteractor>(TEXT("Interactor"));
+	InteractorComponent->SetupAttachment(RootComponent);
+	
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->bUseControllerDesiredRotation = false;
 	GetCharacterMovement()->bIgnoreBaseRotation = true;
@@ -72,6 +76,14 @@ void APlayerCharacter::MoveLeftRight(const FInputActionInstance& Instance)
 }
 
 
+void APlayerCharacter::Interact(const FInputActionInstance& Instance)
+{
+	if (Controller != nullptr)
+	{
+		InteractorComponent->Interact();
+	}
+}
+
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
@@ -97,6 +109,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	{
 		Input->BindAction(InputMoveUp, ETriggerEvent::Triggered, this, &APlayerCharacter::MoveUpDown);
 		Input->BindAction(InputMoveLeftRight,ETriggerEvent::Triggered, this, &APlayerCharacter::MoveLeftRight);
+		Input->BindAction(InputInteract, ETriggerEvent::Triggered, this, &APlayerCharacter::Interact);
 	}
 
 	
