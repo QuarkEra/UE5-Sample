@@ -32,7 +32,7 @@ protected:
 	USceneComponent* FruitSpawnPoint;
 
 	UPROPERTY(VisibleAnywhere)
-	int32 FruitAvailable = 1;
+	int32 FruitAvailable = 2;
 	
 private:
 	UPROPERTY(EditDefaultsOnly)
