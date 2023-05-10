@@ -18,4 +18,5 @@ public:
 	UTheGameInstance();
 	
 	FString PreviousLevel;
+	int32 Day;
 };

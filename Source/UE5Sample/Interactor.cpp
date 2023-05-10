@@ -3,6 +3,8 @@
 
 #include "Interactor.h"
 
+#include "DoorClass.h"
+
 
 // Sets default values for this component's properties
 UInteractor::UInteractor()
@@ -42,7 +44,11 @@ void UInteractor::Interact()
 			if (Fruit != nullptr)
 			{
 				Fruit->Destroy();
-				UE_LOG(LogTemp, Warning, TEXT("Picking up fruit"));
+			}
+			ADoorClass* Door = Cast<ADoorClass>(HitActor);
+			if (Door != nullptr)
+			{
+				Door->OpenDoor();
 			}
 		}
 	}

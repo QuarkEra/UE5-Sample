@@ -3,6 +3,9 @@
 
 #include "DoorClass.h"
 
+#include "MyGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 ADoorClass::ADoorClass()
@@ -24,6 +27,12 @@ void ADoorClass::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ADoorClass::OpenDoor()
+{
+	AMyGameModeBase* GM = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+	GM->LoadTargetLevel(LevelToLoad);
 }
 
 

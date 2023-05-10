@@ -28,9 +28,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	float InteractRadius = 50.f;
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<ATreeBase> TreeClass;
-
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

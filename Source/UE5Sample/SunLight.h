@@ -3,31 +3,30 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DirectionalLight.h"
 #include "GameFramework/Actor.h"
-#include "DoorClass.generated.h"
+#include "SunLight.generated.h"
 
 UCLASS()
-class UE5SAMPLE_API ADoorClass : public AActor
+class UE5SAMPLE_API ASunLight : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ADoorClass();
-
+	ASunLight();
+	
 	UPROPERTY(EditAnywhere)
-	FName LevelToLoad;
+	USceneComponent* RootComp;
+	UPROPERTY(EditAnywhere)
+	UDirectionalLightComponent* SunLightDirection;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	void OpenDoor();
-	
 
 };
