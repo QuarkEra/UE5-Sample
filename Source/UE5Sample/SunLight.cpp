@@ -4,6 +4,8 @@
 #include "SunLight.h"
 
 #include "Components/DirectionalLightComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Math/UnitConversion.h"
 
 // Sets default values
 ASunLight::ASunLight()
@@ -22,13 +24,40 @@ ASunLight::ASunLight()
 void ASunLight::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
+	// GI = Cast<UTheGameInstance>(GetGameInstance());
 	
 }
 
 // Called every frame
 void ASunLight::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+ /*
+	float DT = DeltaTime * SpeedSun;
+	FRotator NewRotation = FRotator::ZeroRotator;
+	NewRotation.Pitch += DT + OldAngle;
+	OldAngle = NewRotation.Pitch;
+	if (OldAngle >= 360.0f)
+	{
+		float Remainder;
+		Remainder = OldAngle - 360;
+		OldAngle = Remainder;
+	}
+	
+	SetActorRotation(NewRotation);
+	
+	if (GetActorRotation().Pitch >= 360.f)
+	{
+		UE_LOG(LogTemp,Display,TEXT("New day"));
+		SetActorRelativeRotation(FRotator(0.f));
+		GI->CurrentDay++;
+		if (GI->CurrentDay >= 1)
+		{
+			GI->ChangeSeason();
+		}
+	}
+	*/
 
 }
 

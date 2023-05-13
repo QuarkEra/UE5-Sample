@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SunLight.h"
+#include "TreeBase.h"
 #include "Engine/LevelScriptActor.h"
 #include "OverWorldLevelScriptActor.generated.h"
 
@@ -22,12 +22,14 @@ public:
 	virtual void BeginPlay() override;
 
 protected:
-	TSubclassOf<ASunLight> SunLightClass;
-	ASunLight* Sun;
+	TSubclassOf<ATreeBase> TreeClass;
+
+	// Set Materials in Level Blueprint 
+	UPROPERTY(EditAnywhere)
+	UMaterial* Winter;
 	
 private:
-	float SpeedSun = 10.0f;
-	float AngleSun = 240.0f;
-	int32 Day = 0; // 0-1 Spring/Summer, Autumn/Winter, to make things easy for now
+	void SetFoliageForSeason(FName Season);
+	
 	
 };
